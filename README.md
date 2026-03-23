@@ -1,6 +1,8 @@
 # Diabetes Prediction Frontend
 
-Angular 19 frontend for the multiclass diabetes prediction app. Connects to the [diabetes-ml-api](https://github.com/jokerwow/diabetes-ml-api) FastAPI backend.
+Angular 19 frontend for the multiclass diabetes prediction app. Connects to the [diabetes-ml-api](https://github.com/juanpjacobi/diabetes-ml-api) FastAPI backend.
+
+**Live:** https://diabetes-ml-client.netlify.app
 
 ---
 
@@ -52,7 +54,7 @@ ng serve
 
 App available at `http://localhost:4200`
 
-Requires the [diabetes-ml-api](https://github.com/jokerwow/diabetes-ml-api) running on `http://localhost:8000`.
+Requires the [diabetes-ml-api](https://github.com/juanpjacobi/diabetes-ml-api) running on `http://localhost:8000`.
 
 ---
 
@@ -76,4 +78,4 @@ ng test --watch=false --browsers=ChromeHeadless
 ng build
 ```
 
-Output in `dist/`. Deploy the contents of `dist/diabetes-frontend/browser/` to Vercel or Netlify.
+Output in `dist/`. Deploy the contents of `dist/diabetes-frontend/browser/` to Netlify (configured via `netlify.toml`).
