@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://your-api.onrender.com',
+  apiUrl: 'https://diabetes-ml-api-b2wo.onrender.com',
 };
