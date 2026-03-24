@@ -172,3 +172,60 @@ select.ng-invalid.ng-touched {
   border-color: #feb2b2;
   color: #9b2c2c;
 }
+
+/* Metrics */
+.metrics-card {
+  margin-top: 1.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,.08);
+}
+
+.metrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metrics-total {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #718096;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+
+.metrics-item {
+  border-radius: .75rem;
+  padding: 1rem;
+  text-align: center;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.metrics-count {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.metrics-label {
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+.metrics-item--healthy    { background: #f0fff4; border-color: #9ae6b4; color: #276749; }
+.metrics-item--prediabetes { background: #fffbeb; border-color: #f6e05e; color: #744210; }
+.metrics-item--diabetic   { background: #fff5f5; border-color: #feb2b2; color: #9b2c2c; }

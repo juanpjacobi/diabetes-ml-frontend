@@ -33,18 +33,18 @@
       <div class="section-title">Análisis de sangre</div>
       <div class="grid grid-3">
         <div class="field">
-          <label for="urea">Urea (mmol/L)</label>
+          <label for="urea">Urea (mg/dL)</label>
           <input id="urea" type="number" step="0.1" formControlName="Urea" placeholder="ej. 4.7" />
           @if (form.get('Urea')?.invalid && form.get('Urea')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.5 – 200</span>
           }
         </div>
 
         <div class="field">
-          <label for="cr">Creatinina (µmol/L)</label>
-          <input id="cr" type="number" step="0.1" formControlName="Cr" placeholder="ej. 60" />
+          <label for="cr">Creatinina (mg/dL)</label>
+          <input id="cr" type="number" step="0.1" formControlName="Cr" placeholder="ej. 46" />
           @if (form.get('Cr')?.invalid && form.get('Cr')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.1 – 50</span>
           }
         </div>
 
@@ -52,7 +52,7 @@
           <label for="hba1c">HbA1c (%)</label>
           <input id="hba1c" type="number" step="0.1" formControlName="HbA1c" placeholder="ej. 6.5" />
           @if (form.get('HbA1c')?.invalid && form.get('HbA1c')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 2.0 – 20.0</span>
           }
         </div>
 
@@ -60,7 +60,7 @@
           <label for="chol">Colesterol (mmol/L)</label>
           <input id="chol" type="number" step="0.1" formControlName="Chol" placeholder="ej. 4.5" />
           @if (form.get('Chol')?.invalid && form.get('Chol')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 1.0 – 20.0</span>
           }
         </div>
 
@@ -68,7 +68,7 @@
           <label for="tg">Triglicéridos (mmol/L)</label>
           <input id="tg" type="number" step="0.1" formControlName="TG" placeholder="ej. 1.8" />
           @if (form.get('TG')?.invalid && form.get('TG')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.1 – 30.0</span>
           }
         </div>
 
@@ -76,7 +76,7 @@
           <label for="hdl">HDL (mmol/L)</label>
           <input id="hdl" type="number" step="0.1" formControlName="HDL" placeholder="ej. 1.1" />
           @if (form.get('HDL')?.invalid && form.get('HDL')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.1 – 10.0</span>
           }
         </div>
 
@@ -84,7 +84,7 @@
           <label for="ldl">LDL (mmol/L)</label>
           <input id="ldl" type="number" step="0.1" formControlName="LDL" placeholder="ej. 2.5" />
           @if (form.get('LDL')?.invalid && form.get('LDL')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.1 – 15.0</span>
           }
         </div>
 
@@ -92,7 +92,7 @@
           <label for="vldl">VLDL (mmol/L)</label>
           <input id="vldl" type="number" step="0.1" formControlName="VLDL" placeholder="ej. 0.8" />
           @if (form.get('VLDL')?.invalid && form.get('VLDL')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 0.1 – 10.0</span>
           }
         </div>
 
@@ -100,7 +100,7 @@
           <label for="bmi">IMC (kg/m²)</label>
           <input id="bmi" type="number" step="0.1" formControlName="BMI" placeholder="ej. 25.0" />
           @if (form.get('BMI')?.invalid && form.get('BMI')?.touched) {
-            <span class="error">Requerido</span>
+            <span class="error">Rango válido: 10.0 – 80.0</span>
           }
         </div>
       </div>
@@ -124,4 +124,33 @@
       </div>
     }
   </main>
+
+  @if (metrics(); as m) {
+    <div class="metrics-card">
+      <div class="metrics-header">
+        <span class="section-title" style="margin:0">Predicciones realizadas</span>
+        <span class="metrics-total">{{ m.total_predictions }} total</span>
+      </div>
+      <div class="metrics-grid">
+        @if (m.by_class['0']; as c) {
+          <div class="metrics-item metrics-item--healthy">
+            <span class="metrics-count">{{ c.count }}</span>
+            <span class="metrics-label">{{ c.label }}</span>
+          </div>
+        }
+        @if (m.by_class['1']; as c) {
+          <div class="metrics-item metrics-item--prediabetes">
+            <span class="metrics-count">{{ c.count }}</span>
+            <span class="metrics-label">{{ c.label }}</span>
+          </div>
+        }
+        @if (m.by_class['2']; as c) {
+          <div class="metrics-item metrics-item--diabetic">
+            <span class="metrics-count">{{ c.count }}</span>
+            <span class="metrics-label">{{ c.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
 </div>

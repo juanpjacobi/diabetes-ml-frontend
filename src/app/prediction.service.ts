@@ -22,12 +22,21 @@ export interface PredictionResponse {
   label: string;
 }
 
+export interface MetricsResponse {
+  total_predictions: number;
+  by_class: { [key: string]: { label: string; count: number } };
+  avg_duration_ms: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class PredictionService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/predict`;
 
   predict(data: PredictionRequest): Observable<PredictionResponse> {
-    return this.http.post<PredictionResponse>(this.apiUrl, data);
+    return this.http.post<PredictionResponse>(`${environment.apiUrl}/predict`, data);
+  }
+
+  getMetrics(): Observable<MetricsResponse> {
+    return this.http.get<MetricsResponse>(`${environment.apiUrl}/metrics`);
   }
 }
